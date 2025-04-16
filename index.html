@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #c9db8c   ;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 네비게이션 바 스타일 */
+        nav {
+            background-color: #438b4a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);            
+            top: 0;
+            z-index: 100;            
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu li {
+            margin-left: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #0066cc;
+        }
+
+        /* 헤더 섹션 스타일 */
+        .header-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .header-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 블로그 카드 컨테이너 스타일 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 50px;            
+            
+        }
+
+        /* 블로그 카드 스타일 */
+        .blog-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .blog-card:nth-child(1) {
+            background-color: #fcfb8f;          
+        }
+        .blog-card:nth-child(2) {
+            background-color: #cffc9d;          
+        }
+        
+        .blog-card:nth-child(3) {
+            background-color: #a1fd54;          
+        }     
+
+        .blog-card:nth-child(4) {
+            background-color: #a2cd57;          
+        }
+
+        
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-category {
+            color: #0066cc;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .read-more {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #004c99;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #9ef753;
+            border-top: 1px solid #eee;
+            padding: 30px 0;
+            margin-top: 80px;
+            text-align: center;
+            color: #777;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .footer-links li {
+            margin: 0 10px;
+        }
+
+        .footer-links a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0066cc;
+        }
+
+        /* 반응형 설정 */
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .header-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .menu {
+                margin-top: 15px;
+            }
+
+            .menu li:first-child {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 바 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">모코코</a>
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="#">카테고리</a></li>
+                <li><a href="#">인기글</a></li>
+                <li><a href="#">소개</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <!-- 헤더 섹션 -->
+        <div class="header-section">
+            <h1>모코코랜드에 오신걸 환영합니다</h1>
+            <p>모코코들이 해야되는 공략들 꼭 숙지하시길바랍니다.</p>
+        </div>
+
+        <!-- 블로그 포스트 그리드 -->
+        <div class="blog-grid">
+            <!-- 블로그 카드 1 -->
+            <div class="blog-card" onclick="location.href='post.html'">
+                <img src="./좋은거있는데.jpg" alt="블로그 이미지" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">숙제? 반숙? 클경? 트라이?</span>
+                    <h3 class="card-title">레이드 방제에 따른 난이도</h3>
+                    <p class="card-excerpt">방제에 따른 난이도를 알아봅니다.</p>
+                    <div class="card-info">
+                        <span>2025년 4월 15일</span>
+                        <a href="post.html" class="read-more">더 읽기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블로그 카드 2 -->
+            <div class="blog-card">
+                <img src="./기분좋아콩.jpg" alt="블로그 이미지" class="card-img">
+                <div class="card-content">
+                    <span class="card-category"></span>
+                    <h3 class="card-title">재화로 성장하기</h3>
+                    <p class="card-excerpt">각종 재화를 활용해서 성장하는 법을 알아봅시다!</p>
+                    <div class="card-info">
+                        <span>2025 4월 15일</span>
+                        <a href="post.html" class="read-more">더 읽기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블로그 카드 3 -->
+            <div class="blog-card" onclick="location.href='post3.html'">
+                <img src="./움짤.jpg" alt="블로그 이미지" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">상대방의 무빙을 보고 숙코인지 알아채자 </span>
+                    <h3 class="card-title">숙코 판별기</h3>
+                    <p class="card-excerpt">상대의 움직임을 보고 숙코를 판별해보자!</p>
+                    <div class="card-info">
+                        <span>2025년 4월 15일</span>
+                        <a href="post.html" class="read-more">더 읽기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블로그 카드 4 -->
+            <div class="blog-card">
+                <img src="./안녕모코코.jpg" alt="블로그 이미지" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">유입을 하고자하는 친구들 여기로!</span>
+                    <h3 class="card-title">모코코 친구들을 위한 강의</h3>
+                    <p class="card-excerpt">다양한 상황에서 모코코분들은 어떻게해야할지 알아봅시다.</p>
+                    <div class="card-info">
+                        <span>2025년 4월 15일</span>
+                        <a href="post.html" class="read-more">더 읽기</a>
+                    </div>
+                </div>
+            </div>
+
+        
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">홈</a></li>
+                <li><a href="#">블로그</a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">연락처</a></li>
+            </ul>
+            <p>&copy; 2023 MyBlog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
